@@ -1,45 +1,55 @@
-import colors from 'vuetify/es5/util/colors'
-import { API_BASE } from './util/enviroments'
-
+const development = process.env.NODE_ENV !== 'production'
 export default {
   /*
-  ** Nuxt rendering mode
-  ** See https://nuxtjs.org/api/configuration-mode
-  */
+   ** Nuxt rendering mode
+   ** See https://nuxtjs.org/api/configuration-mode
+   */
   mode: 'spa',
   /*
-  ** Nuxt target
-  ** See https://nuxtjs.org/api/configuration-target
-  */
+   ** Nuxt target
+   ** See https://nuxtjs.org/api/configuration-target
+   */
   target: 'server',
+  env: {
+    baseUrl: development ? 'http://localhost:3000/api' : process.env.BASE_URL 
+  },
   /*
-  ** Headers of the page
-  ** See https://nuxtjs.org/api/configuration-head
-  */
+   ** Headers of the page
+   ** See https://nuxtjs.org/api/configuration-head
+   */
   head: {
     titleTemplate: '%s - ' + process.env.npm_package_name,
     title: process.env.npm_package_name || '',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+    meta: [{
+        charset: 'utf-8'
+      },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      },
+      {
+        hid: 'description',
+        name: 'description',
+        content: process.env.npm_package_description || ''
+      }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicon.ico'
+    }]
   },
   /*
-  ** Global CSS
-  */
+   ** Global CSS
+   */
   css: [
     '~/scss/main.scss'
   ],
   /*
-  ** Plugins to load before mounting the App
-  ** https://nuxtjs.org/guide/plugins
-  */
-  plugins: [
-    {
+   ** Plugins to load before mounting the App
+   ** https://nuxtjs.org/guide/plugins
+   */
+  plugins: [{
       src: '~/plugins/localStorage.js',
       ssr: false
     },
@@ -52,19 +62,19 @@ export default {
     '@/plugins/vue-the-mask.js',
   ],
   /*
-  ** Auto import components
-  ** See https://nuxtjs.org/api/configuration-components
-  */
+   ** Auto import components
+   ** See https://nuxtjs.org/api/configuration-components
+   */
   components: true,
   /*
-  ** Nuxt.js dev-modules
-  */
+   ** Nuxt.js dev-modules
+   */
   buildModules: [
     '@nuxtjs/vuetify',
   ],
   /*
-  ** Nuxt.js modules
-  */
+   ** Nuxt.js modules
+   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
@@ -73,20 +83,26 @@ export default {
     'cookie-universal-nuxt'
   ],
   /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
+   ** Axios module configuration
+   ** See https://axios.nuxtjs.org/options
+   */
   axios: {
     proxy: true
   },
 
   proxy: {
-    '/base_url': { target: API_BASE, pathRewrite: { '^/base_url': '' }, changeOrigin: true }
+    '/base_url': {
+      target: 'http://localhost:3000/api',
+      pathRewrite: {
+        '^/base_url': ''
+      },
+      changeOrigin: true
+    }
   },
   /*
-  ** vuetify module configuration
-  ** https://github.com/nuxt-community/vuetify-module
-  */
+   ** vuetify module configuration
+   ** https://github.com/nuxt-community/vuetify-module
+   */
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     optionsPath: './vuetify.options.js'
@@ -103,9 +119,9 @@ export default {
     },
   },
   /*
-  ** Build configuration
-  ** See https://nuxtjs.org/api/configuration-build/
-  */
+   ** Build configuration
+   ** See https://nuxtjs.org/api/configuration-build/
+   */
   build: {
     transpile: [
       "epic-spinners"
@@ -119,8 +135,8 @@ export default {
     }
   },
   /*
- ** Allow dev tools in production
- */
+   ** Allow dev tools in production
+   */
   vue: {
     config: {
       productionTip: false,

@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt --port 3004",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "start": "nuxt start --port 3003",
     "generate": "nuxt generate",
     "build-prod": "npm run build && npm run start"
   },
