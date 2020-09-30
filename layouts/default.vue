@@ -10,7 +10,7 @@
             <v-list-item-title
               class="font-weight-bold"
               style="font-size: 14pt;"
-            >{{ 'USER DEFAULT' }}</v-list-item-title>
+            >{{ title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </div>
@@ -23,16 +23,6 @@
           <v-list-item-content>
             <v-list-item-title v-text="item.title" />
           </v-list-item-content>
-        </v-list-item>
-        <div>
-          <v-divider></v-divider>
-        </div>
-
-        <v-list-item @click="logout">
-          <v-list-item-action>
-            <v-icon color="#fff">mdi-exit-to-app</v-icon>
-            <span class="font-weight-bold color-white" style="margin-left: 25px">Sair</span>
-          </v-list-item-action>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -73,17 +63,12 @@ export default {
       items: [
         {
           icon: "mdi-apps",
-          title: "Dashboard",
+          title: "Home",
           to: "/",
-        },
-        {
-          icon: "mdi-chart-bubble",
-          title: "Inspire",
-          to: "/inspire",
         },
       ],
       miniVariant: false,
-      title: "Default Template",
+      title: "Movie Time",
     };
   },
 
@@ -104,7 +89,7 @@ export default {
       return this.$store.state.isLoading;
     },
     showBar() {
-      return ["home", "login"].includes(this.$route.name);
+      return ["home"].includes(this.$route.name);
     },
     avatar() {
       return require(`../static/icon.png`);
@@ -126,13 +111,7 @@ export default {
     onResize() {
       let isMobile = window.innerWidth < 600;
       this.$store.commit("CHECK_MOBILE", isMobile);
-    },
-    logout() {
-      this.$router.push("/login");
-      setTimeout(() => {
-        this.$store.commit("LOGOUT");
-      }, 300);
-    },
+    }
   },
 };
 </script>

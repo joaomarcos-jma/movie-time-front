@@ -11,15 +11,14 @@ export default {
    */
   target: 'server',
   env: {
-    baseUrl: development ? 'http://localhost:3000/api' : process.env.BASE_URL 
+    baseUrl: development ? 'http://127.0.0.1/api' : process.env.BASE_URL 
   },
   /*
    ** Headers of the page
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
+    title: 'movie time',
     meta: [{
         charset: 'utf-8'
       },
@@ -53,13 +52,9 @@ export default {
       src: '~/plugins/localStorage.js',
       ssr: false
     },
-    '@/plugins/functions',
     '@/plugins/sweet-alert.js',
-    '@/plugins/currency.js',
     '@/plugins/filters.js',
-    '@/plugins/mask.js',
     '@/plugins/animate.js',
-    '@/plugins/vue-the-mask.js',
   ],
   /*
    ** Auto import components
@@ -80,7 +75,6 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/proxy',
-    'cookie-universal-nuxt'
   ],
   /*
    ** Axios module configuration
@@ -92,7 +86,7 @@ export default {
 
   proxy: {
     '/base_url': {
-      target: 'http://localhost:3000/api',
+      target: 'http://127.0.0.1/api',
       pathRewrite: {
         '^/base_url': ''
       },
@@ -112,8 +106,8 @@ export default {
       iconSrc: './static/icon.png'
     },
     manifest: {
-      name: 'Nuxt Template PWA',
-      short_name: 'Nuxt Template',
+      name: 'Movie Time PWA',
+      short_name: 'Movie Time',
       lang: 'en',
       display: 'standalone',
     },

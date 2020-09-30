@@ -1,22 +1,18 @@
 <template>
   <div class="fill-height">
     <div class="loader">
-      <loader :animation-duration="2000" :size="60" color="#E3F2FD" />
-    </div>
-    <br />
-    <div>
-      <span class="text-center default font-weight-bold">{{'Aguarde, carregando...'}}</span>
+      <loader :animation-duration="2000" :size="60" color="#3F51B5" />
     </div>
   </div>
 </template>
 
 <script>
-import { FingerprintSpinner } from "epic-spinners";
+import { BreedingRhombusSpinner } from "epic-spinners";
 
 export default {
   name: "loading",
   components: {
-    loader: FingerprintSpinner,
+    loader: BreedingRhombusSpinner,
   },
 };
 </script>
